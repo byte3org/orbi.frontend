@@ -2,8 +2,14 @@ import React from 'react';
 import { Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
 import SecondaryButton from '../components/SecondaryButton';
 import PrimaryText from '../components/PrimaryText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-export default function BiometricRegister() {
+type Props = NativeStackScreenProps<RootStackParamList, 'BiometricRegister'>;
+
+export default function BiometricRegister(props: Props) {
+	const { navigation } = props;
+
 	return (
 		<ImageBackground source={require('../../assets/get-started-background.png')} style={styles.parentView}>
 			<View style={styles.secondaryView}>
@@ -23,7 +29,9 @@ export default function BiometricRegister() {
 					</View>
 
 					<View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
-						<SecondaryButton onPress={() => console.log('Go to Login Page')} title="Login Instead" />
+						<SecondaryButton onPress={() => navigation.navigate('BiometricLogin')} title="Login Instead" />
+						<Text style={{ color: 'rgba(255,255,255,0.5)', marginHorizontal: 12 }}>•</Text>
+						<SecondaryButton onPress={() => navigation.navigate('ManualRegister')} title="Register Manually" />
 					</View>
 				</ScrollView>
 			</View>

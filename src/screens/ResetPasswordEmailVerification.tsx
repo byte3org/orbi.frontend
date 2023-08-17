@@ -13,14 +13,19 @@ import {
 	Platform,
 } from 'react-native';
 import SecondaryButton from '../components/SecondaryButton';
-import TextBox from '../components/TextBox';
 import PrimaryButton from '../components/PrimaryButton';
 import ParagraphText from '../components/ParagraphText';
 import PrimaryText from '../components/PrimaryText';
 import CharacterBox from '../components/CharacterBox';
 import SecondaryText from '../components/SecondaryText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-export default function ResetPasswordEmailVerification() {
+type Props = NativeStackScreenProps<RootStackParamList, 'ResetPasswordEmailVerification'>;
+
+export default function ResetPasswordEmailVerification(props: Props) {
+	const { navigation } = props;
+
 	const characterBox1 = React.useRef<TextInput>(null);
 	const characterBox2 = React.useRef<TextInput>(null);
 	const characterBox3 = React.useRef<TextInput>(null);
@@ -69,22 +74,19 @@ export default function ResetPasswordEmailVerification() {
 							</KeyboardAvoidingView>
 							<PrimaryButton
 								style={styles.primaryButton}
-								onPress={() => console.log('Go to Other Information Collecting Register Screen')}
+								onPress={() => navigation.navigate('ResetPassword')}
 								title="Next"
 							/>
 
-							<View
+							<SecondaryButton
 								style={{
-									flex: 1,
 									alignItems: 'center',
-									flexDirection: 'row',
 									justifyContent: 'center',
 									marginTop: 50,
-								}}>
-								<SecondaryButton onPress={() => console.log('pressed')} title="Resend Email" />
-								<Text style={{ color: 'rgba(255,255,255,0.5)', marginHorizontal: 12 }}>•</Text>
-								<SecondaryButton onPress={() => console.log('pressed')} title="Change Email" />
-							</View>
+								}}
+								onPress={() => console.log('Resend Email')}
+								title="Resend Email"
+							/>
 						</View>
 					</ScrollView>
 				</View>

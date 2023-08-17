@@ -17,10 +17,15 @@ import PrimaryButton from '../components/PrimaryButton';
 import TextBox from '../components/TextBox';
 import SecondaryButton from '../components/SecondaryButton';
 import PrimaryText from '../components/PrimaryText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-export default function ManualLogin() {
+type Props = NativeStackScreenProps<RootStackParamList, 'ManualLogin'>;
+
+export default function ManualLogin(props: Props) {
+	const { navigation } = props;
+
 	const passwordRef = React.useRef<TextInput>(null);
-
 	return (
 		<ImageBackground source={require('../../assets/get-started-background.png')} style={styles.parentView}>
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={styles.parentView}>
@@ -42,12 +47,19 @@ export default function ManualLogin() {
 							<TextBox placeholderText="Password" textContentType="password" ref={passwordRef} />
 						</KeyboardAvoidingView>
 
-						<SecondaryButton onPress={() => console.log('pressed')} title="Forgot Password ?" />
+						<SecondaryButton
+							onPress={() => navigation.navigate('ResetPasswordEmailVerification')}
+							title="Forgot Password ?"
+						/>
 
-						<PrimaryButton style={styles.primaryButton} onPress={() => console.log('pressed')} title="Login" />
+						<PrimaryButton
+							style={styles.primaryButton}
+							onPress={() => navigation.navigate('BiometricLogin')}
+							title="Login"
+						/>
 
 						<SecondaryButton
-							onPress={() => console.log('pressed')}
+							onPress={() => navigation.navigate('BiometricRegister')}
 							title="Register Instead"
 							style={styles.secondaryButton}
 						/>

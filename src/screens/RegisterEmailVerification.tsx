@@ -18,8 +18,15 @@ import PrimaryButton from '../components/PrimaryButton';
 import ParagraphText from '../components/ParagraphText';
 import PrimaryText from '../components/PrimaryText';
 import CharacterBox from '../components/CharacterBox';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
+import SecondaryText from '../components/SecondaryText';
 
-export default function RegisterEmailVerification() {
+type Props = NativeStackScreenProps<RootStackParamList, 'RegisterEmailVerification'>;
+
+export default function RegisterEmailVerification(props: Props) {
+	const { navigation } = props;
+
 	const characterBox1 = React.useRef<TextInput>(null);
 	const characterBox2 = React.useRef<TextInput>(null);
 	const characterBox3 = React.useRef<TextInput>(null);
@@ -37,7 +44,8 @@ export default function RegisterEmailVerification() {
 						<Text style={styles.logo}>Orbi</Text>
 					</SafeAreaView>
 					<ScrollView style={styles.mainView}>
-						<PrimaryText>Reset Password</PrimaryText>
+						<PrimaryText>Register</PrimaryText>
+						<SecondaryText style={{ marginVertical: 20 }}>Verify Your Email</SecondaryText>
 						<ParagraphText>
 							Magni distinctio iusto rerum fuga ut est. Quia corporis quod et ut alias ipsum vero vitae minima. Eum in
 							tempora voluptate quam. Dolorem id tempora soluta incidunt quasi quod rerum.
@@ -67,7 +75,7 @@ export default function RegisterEmailVerification() {
 							</KeyboardAvoidingView>
 							<PrimaryButton
 								style={styles.primaryButton}
-								onPress={() => console.log('Go to Other Information Collecting Register Screen')}
+								onPress={() => navigation.navigate('RegisterOtherUserInfo')}
 								title="Next"
 							/>
 
@@ -79,9 +87,9 @@ export default function RegisterEmailVerification() {
 									justifyContent: 'center',
 									marginTop: 50,
 								}}>
-								<SecondaryButton onPress={() => console.log('pressed')} title="Resend Email" />
+								<SecondaryButton onPress={() => console.log('Resend Email')} title="Resend Email" />
 								<Text style={{ color: 'rgba(255,255,255,0.5)', marginHorizontal: 12 }}>•</Text>
-								<SecondaryButton onPress={() => console.log('pressed')} title="Change Email" />
+								<SecondaryButton onPress={() => navigation.goBack()} title="Change Email" />
 							</View>
 						</View>
 					</ScrollView>

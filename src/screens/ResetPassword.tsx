@@ -16,10 +16,14 @@ import SecondaryButton from '../components/SecondaryButton';
 import TextBox from '../components/TextBox';
 import PrimaryButton from '../components/PrimaryButton';
 import PrimaryText from '../components/PrimaryText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-export default function ResetPassword() {
-	const fullNameRef = React.useRef<TextInput>(null);
-	const emailRef = React.useRef<TextInput>(null);
+type Props = NativeStackScreenProps<RootStackParamList, 'ResetPassword'>;
+
+export default function ResetPassword(props: Props) {
+	const { navigation } = props;
+
 	const passwordRef = React.useRef<TextInput>(null);
 	const retypePasswordRef = React.useRef<TextInput>(null);
 
@@ -45,7 +49,11 @@ export default function ResetPassword() {
 								/>
 								<TextBox ref={retypePasswordRef} placeholderText="Confirm New Password" textContentType="password" />
 							</KeyboardAvoidingView>
-							<PrimaryButton style={styles.primaryButton} onPress={() => console.log('Register')} title="Register" />
+							<PrimaryButton
+								style={styles.primaryButton}
+								onPress={() => navigation.navigate('ManualLogin')}
+								title="Register"
+							/>
 						</View>
 					</ScrollView>
 				</View>

@@ -16,8 +16,14 @@ import SecondaryButton from '../components/SecondaryButton';
 import TextBox from '../components/TextBox';
 import PrimaryButton from '../components/PrimaryButton';
 import PrimaryText from '../components/PrimaryText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-export default function ManualRegister() {
+type Props = NativeStackScreenProps<RootStackParamList, 'ManualRegister'>;
+
+export default function ManualRegister(props: Props) {
+	const { navigation } = props;
+
 	const fullNameRef = React.useRef<TextInput>(null);
 	const emailRef = React.useRef<TextInput>(null);
 	const passwordRef = React.useRef<TextInput>(null);
@@ -57,9 +63,13 @@ export default function ManualRegister() {
 								/>
 								<TextBox ref={retypePasswordRef} placeholderText="Retype Password" textContentType="password" />
 							</KeyboardAvoidingView>
-							<PrimaryButton style={styles.primaryButton} onPress={() => console.log('Register')} title="Register" />
+							<PrimaryButton
+								style={styles.primaryButton}
+								onPress={() => navigation.navigate('RegisterEmailVerification')}
+								title="Register"
+							/>
 							<SecondaryButton
-								onPress={() => console.log('pressed')}
+								onPress={() => navigation.navigate('BiometricLogin')}
 								title="Login Instead"
 								style={styles.secondaryButton}
 							/>
