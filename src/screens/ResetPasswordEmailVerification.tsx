@@ -19,9 +19,9 @@ import PrimaryText from '../components/PrimaryText';
 import CharacterBox from '../components/CharacterBox';
 import SecondaryText from '../components/SecondaryText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
+import { AuthScreenList } from '../../App';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ResetPasswordEmailVerification'>;
+type Props = NativeStackScreenProps<AuthScreenList, 'ResetPasswordEmailVerification'>;
 
 export default function ResetPasswordEmailVerification(props: Props) {
 	const { navigation } = props;
@@ -39,9 +39,7 @@ export default function ResetPasswordEmailVerification(props: Props) {
 			blurRadius={25}>
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={styles.parentView}>
 				<View style={styles.secondaryView}>
-					<SafeAreaView>
-						<Text style={styles.logo}>Orbi</Text>
-					</SafeAreaView>
+					<SafeAreaView>{/* <Text style={styles.logo}>Orbi</Text> */}</SafeAreaView>
 					<ScrollView style={styles.mainView}>
 						<PrimaryText>Reset Password</PrimaryText>
 						<SecondaryText style={{ marginVertical: 20 }}>Verify Your Email</SecondaryText>

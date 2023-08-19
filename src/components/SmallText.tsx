@@ -7,15 +7,15 @@ type Props = {
 	children: React.ReactNode;
 };
 
-function ParagraphText(props: Props) {
+function SmallText(props: Props) {
 	const { style: customTextStyles, children } = props;
 
 	const textStyle = StyleSheet.compose(
 		{
 			fontFamily: 'Poppins_400Regular',
-			fontSize: 18,
-			color: '#fff',
-			lineHeight: 27,
+			fontSize: 16,
+			color: 'hsla(0,0%,100%,0.5)',
+			lineHeight: 24,
 		},
 		customTextStyles
 	);
@@ -23,4 +23,4 @@ function ParagraphText(props: Props) {
 	return <Text style={textStyle}>{children}</Text>;
 }
 
-export default ParagraphText;
+export default SmallText;

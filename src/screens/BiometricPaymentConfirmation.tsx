@@ -4,18 +4,19 @@ import SecondaryButton from '../components/SecondaryButton';
 import PrimaryText from '../components/PrimaryText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthScreenList } from '../../App';
+import SecondaryText from '../components/SecondaryText';
 
 type Props = NativeStackScreenProps<AuthScreenList, 'BiometricLogin'>;
 
-export default function BiometricLogin(props: Props) {
+export default function BiometricPaymentConfirmation(props: Props) {
 	const { navigation } = props;
 	return (
 		<ImageBackground source={require('../../assets/get-started-background.png')} style={styles.parentView}>
 			<View style={styles.secondaryView}>
-				{/* <Text style={styles.logo}>Orbi</Text> */}
+				<Text style={styles.logo}>Orbi</Text>
 
 				<ScrollView style={styles.mainView}>
-					<PrimaryText>Login</PrimaryText>
+					<SecondaryText>Confirm Payment</SecondaryText>
 
 					<View style={{ alignItems: 'center', paddingVertical: 76, marginBottom: 32 }}>
 						<Image
@@ -28,9 +29,7 @@ export default function BiometricLogin(props: Props) {
 					</View>
 
 					<View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
-						<SecondaryButton onPress={() => navigation.navigate('ManualLogin')} title="Login Manually" />
-						<Text style={{ color: 'rgba(255,255,255,0.5)', marginHorizontal: 12 }}>•</Text>
-						<SecondaryButton onPress={() => navigation.navigate('BiometricRegister')} title="Register Instead" />
+						<SecondaryButton onPress={() => navigation.navigate('ManualLogin')} title="Pay with Galactic ID" />
 					</View>
 				</ScrollView>
 			</View>

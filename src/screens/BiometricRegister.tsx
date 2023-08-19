@@ -3,9 +3,9 @@ import { Image, ImageBackground, ScrollView, StyleSheet, Text, View } from 'reac
 import SecondaryButton from '../components/SecondaryButton';
 import PrimaryText from '../components/PrimaryText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
+import { AuthScreenList } from '../../App';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'BiometricRegister'>;
+type Props = NativeStackScreenProps<AuthScreenList, 'BiometricRegister'>;
 
 export default function BiometricRegister(props: Props) {
 	const { navigation } = props;
@@ -13,7 +13,7 @@ export default function BiometricRegister(props: Props) {
 	return (
 		<ImageBackground source={require('../../assets/get-started-background.png')} style={styles.parentView}>
 			<View style={styles.secondaryView}>
-				<Text style={styles.logo}>Orbi</Text>
+				{/* <Text style={styles.logo}>Orbi</Text> */}
 
 				<ScrollView style={styles.mainView}>
 					<PrimaryText>Register</PrimaryText>

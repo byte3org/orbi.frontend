@@ -12,8 +12,24 @@ import RegisterEmailVerification from './src/screens/RegisterEmailVerification';
 import RegisterOtherUserInfo from './src/screens/RegisterOtherUserInfo';
 import ResetPasswordEmailVerification from './src/screens/ResetPasswordEmailVerification';
 import ResetPassword from './src/screens/ResetPassword';
+import SecondaryButton from './src/components/SecondaryButton';
+import Header from './src/components/Header';
+import Home from './src/screens/Home';
+import Profile from './src/screens/Profile';
+import UpcomingFlightInfo from './src/screens/UpcomingFlightInfo';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Destinations from './src/screens/Destinations';
+import Destination from './src/screens/Destination';
+import Booking from './src/screens/Booking';
+import Transportation from './src/screens/Transportation';
+import TransportationModeDetails from './src/screens/TransportationModeDetails';
+import Confirmation from './src/screens/Confirmation';
+import Invoice from './src/screens/Invoice';
+import Discover from './src/screens/Discover';
+import BiometricPaymentConfirmation from './src/screens/BiometricPaymentConfirmation';
+import ManualPaymentConfirmation from './src/screens/ManualPaymentConfirmation';
 
-export type RootStackParamList = {
+export type AuthScreenList = {
 	ManualLogin: undefined;
 	ManualRegister: undefined;
 	ResetPassword: undefined;
@@ -24,7 +40,19 @@ export type RootStackParamList = {
 	BiometricLogin: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+export type HomeScreenList = {
+	ManualLogin: undefined;
+	ManualRegister: undefined;
+	ResetPassword: undefined;
+	ResetPasswordEmailVerification: undefined;
+	RegisterOtherUserInfo: undefined;
+	RegisterEmailVerification: undefined;
+	BiometricRegister: undefined;
+	BiometricLogin: undefined;
+};
+
+const Auth = createNativeStackNavigator<AuthScreenList>();
+// const Home = createNativeStackNavigator<HomeScreenList>();
 
 export default function App() {
 	let [fontsLoaded] = useFonts({
@@ -38,18 +66,45 @@ export default function App() {
 	}
 
 	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName="BiometricLogin">
-				<Stack.Screen name="ManualLogin" component={ManualLogin} />
-				<Stack.Screen name="ManualRegister" component={ManualRegister} />
-				<Stack.Screen name="ResetPassword" component={ResetPassword} />
-				<Stack.Screen name="ResetPasswordEmailVerification" component={ResetPasswordEmailVerification} />
-				<Stack.Screen name="RegisterOtherUserInfo" component={RegisterOtherUserInfo} />
-				<Stack.Screen name="RegisterEmailVerification" component={RegisterEmailVerification} />
-				<Stack.Screen name="BiometricRegister" component={BiometricRegister} />
-				<Stack.Screen name="BiometricLogin" component={BiometricLogin} />
-			</Stack.Navigator>
-		</NavigationContainer>
+		<SafeAreaProvider>
+			{/* <Header /> */}
+			{/* <TransportationModeDetails /> */}
+			{/* <Transportation /> */}
+			{/* <Booking /> */}
+			{/* <Destination /> */}
+			{/* <Destinations /> */}
+			{/* <Confirmation /> */}
+			{/* <Discover /> */}
+			{/* <BiometricPaymentConfirmation /> */}
+			{/* <ManualPaymentConfirmation /> */}
+			{/* <Invoice
+				cart={[
+					{ item: 'ER6-Transport', quantity: 2, unitPrice: 1200 },
+					{ item: 'Refreshing Drinks', quantity: 4, unitPrice: 50 },
+				]}
+				transactionId="FAJIO48YTF09XGAY7"
+				passengers={['Luke SkyWalker', 'Leila SkyWalker', 'Darth Wader', 'Master Yoda']}
+				image={require('./assets/curima.png')}
+			/> */}
+			{/* <UpcomingFlightInfo /> */}
+			{/* <Profile /> */}
+			{/* <Home /> */}
+
+			<NavigationContainer>
+				<Auth.Navigator
+					initialRouteName="BiometricLogin"
+					screenOptions={{ headerTintColor: '#fff', header: Header, contentStyle: { backgroundColor: '#0F1423' } }}>
+					<Auth.Screen name="ManualLogin" component={ManualLogin} />
+					<Auth.Screen name="ManualRegister" component={ManualRegister} />
+					<Auth.Screen name="ResetPassword" component={ResetPassword} />
+					<Auth.Screen name="ResetPasswordEmailVerification" component={ResetPasswordEmailVerification} />
+					<Auth.Screen name="RegisterOtherUserInfo" component={RegisterOtherUserInfo} />
+					<Auth.Screen name="RegisterEmailVerification" component={RegisterEmailVerification} />
+					<Auth.Screen name="BiometricRegister" component={BiometricRegister} />
+					<Auth.Screen name="BiometricLogin" component={BiometricLogin} />
+				</Auth.Navigator>
+			</NavigationContainer>
+		</SafeAreaProvider>
 	);
 }
 

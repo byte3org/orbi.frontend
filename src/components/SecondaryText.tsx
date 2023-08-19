@@ -4,7 +4,7 @@ import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
 type Props = {
 	style?: StyleProp<TextStyle>;
 	// text: string;
-	children: string;
+	children: React.ReactNode;
 };
 
 function SecondaryText(props: Props) {

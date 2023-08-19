@@ -1,16 +1,17 @@
 import React from 'react';
-import { Animated, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
+import { ActivityIndicator, Animated, Platform, Pressable, StyleProp, StyleSheet, Text, ViewStyle } from 'react-native';
 
 export type ButtonProps = {
 	title: string;
 	style?: StyleProp<ViewStyle>;
 	textStyle?: StyleProp<ViewStyle>;
-	onPress: () => void;
+	onPress: (setIsPending: React.Dispatch<React.SetStateAction<boolean>>) => void;
 };
 
 const PrimaryButton = (props: ButtonProps) => {
 	const { title, onPress, style: customStyles, textStyle: customTextStyles } = props;
 	const [isPressed, setIsPressed] = React.useState(false);
+	const [isPending, setIsPending] = React.useState(false);
 
 	const buttonBrightness = React.useRef(new Animated.Value(1)).current; // Initial value for opacity: 0
 
@@ -26,11 +27,11 @@ const PrimaryButton = (props: ButtonProps) => {
 		{
 			color: '#fff',
 			backgroundColor: 'hsla(28, 87%, 62%, 1)',
-			minWidth: 'auto',
+			minWidth: 200,
 			justifyContent: 'center',
 			alignItems: 'center',
-			width: 200,
-			height: 60,
+			paddingHorizontal: 30,
+			paddingVertical: 16,
 			borderRadius: 50,
 		},
 		customStyles
@@ -40,6 +41,7 @@ const PrimaryButton = (props: ButtonProps) => {
 		{
 			fontFamily: 'Poppins_500Medium',
 			fontSize: 24,
+			opacity: isPending ? 0 : 1,
 		},
 		customTextStyles
 	);
@@ -52,11 +54,18 @@ const PrimaryButton = (props: ButtonProps) => {
 				opacity: buttonBrightness,
 			}}>
 			<Pressable
-				onPress={onPress}
+				onPress={() => onPress(setIsPending)}
 				style={pressableStyle}
 				onPressIn={() => setIsPressed(true)}
 				onPressOut={() => setTimeout(() => setIsPressed(false), 100)}>
 				<Text style={textStyle}>{title}</Text>
+				{isPending && (
+					<ActivityIndicator
+						color={'#0F1423'}
+						style={{ position: 'absolute' }}
+						size={Platform.OS === 'android' ? 'large' : 'small'}
+					/>
+				)}
 			</Pressable>
 		</Animated.View>
 	);
