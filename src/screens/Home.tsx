@@ -6,7 +6,11 @@ import DestinationsCard from '../components/DestinationCard';
 import SecondaryText from '../components/SecondaryText';
 import SmallText from '../components/SmallText';
 
+import { REACT_NATIVE_APP_API_URL } from "@env"
+
 type Props = {};
+
+export const user = "Seniru"
 
 export const data: Destination[] = [
 	{
@@ -102,7 +106,25 @@ function Home({}: Props) {
 		setUserData({ name: 'Leila SkyWalker' });
 		setUpcomingFlightData(flightData);
 		setRecommendedDestinations(data);
-		setTrendingDestinations([...data].reverse());
+		(async () => {
+			let trending = await (await fetch(`${REACT_NATIVE_APP_API_URL}/destinations/trending`)).json()
+			trending = trending.map(dest => {
+				let image;
+				try {
+				  image = require(`../../assets/${dest.id}.png`);
+				} catch (error) {
+				  image = require('../../assets/discover.png');
+				}
+				return {
+					destination: dest.name,
+					planet: dest.planet.name,
+					image,
+					isAFavourite: false
+				}
+			})
+			console.log(trending)
+			setTrendingDestinations(trending);
+		})()
 	}, []);
 
 	return (

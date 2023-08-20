@@ -4,24 +4,44 @@ import SecondaryText from '../components/SecondaryText';
 import SmallText from '../components/SmallText';
 import SecondaryButton from '../components/SecondaryButton';
 import DestinationsCard from '../components/DestinationCard';
-import { data } from './Home';
+import { data, user } from './Home';
+
+import { REACT_NATIVE_APP_API_URL } from "@env"
 
 type Props = {};
 
-const testProfileData = {
-	name: 'Leila SkyWalker',
-	image: require('../../assets/avatar.jpg'),
-	galacticId: 'iWalker#2121',
-	planet: 'Earth',
-	recommendedDestinations: data,
-	trendingDestinations: data,
-};
 
 const Profile = (props: Props) => {
 	const [profileData, setProfileData] = React.useState<ProfileData>();
 
 	React.useEffect(() => {
-		setProfileData(testProfileData);
+		fetch(`${REACT_NATIVE_APP_API_URL}/user/${user}`)
+			.then(res => res.json())
+			.then(async res => {
+				let trending = await (await fetch(`${REACT_NATIVE_APP_API_URL}/destinations/trending`)).json()
+				trending = trending.map(dest => {
+					let image;
+					try {
+					  image = require(`../../assets/${dest.id}.png`);
+					} catch (error) {
+					  image = require('../../assets/discover.png');
+					}
+					return {
+						destination: dest.name,
+						planet: dest.planet.name,
+						image,
+						isAFavourite: false
+					}
+				})
+				setProfileData({
+					name: res.name,
+					image: require('../../assets/avatar.jpg'),
+					galacticId: res.galacticId,
+					planet: res.planet.name,
+					recommendedDestinations: data,
+					trendingDestinations: trending
+				});
+			})
 	}, []);
 
 	return (

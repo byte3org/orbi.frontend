@@ -1,4 +1,5 @@
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import DatePicker from 'react-native-modern-datepicker';
 import Checkbox from 'expo-checkbox';
@@ -14,6 +15,10 @@ import PrimaryButton from '../components/PrimaryButton';
 type Props = {};
 
 const Booking = (props: Props) => {
+	const navigator = useNavigation()
+	const route = useRoute();
+	let dest = route.params.destination
+
 	const [searchingGalacticID, setSearchingGalacticID] = React.useState('');
 	const [passengerGalacticIDs, setPassengerGalacticIDs] = React.useState(['Luke SkyWalker', 'Leila SkyWalker']);
 
@@ -83,7 +88,7 @@ const Booking = (props: Props) => {
 
 				<PrimaryButton
 					style={styles.primaryButton}
-					onPress={() => navigation.navigate('BiometricLogin')}
+					onPress={() => navigator.navigate('Transportation', { destination: dest })}
 					title="Next"
 				/>
 			</ScrollView>

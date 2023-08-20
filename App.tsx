@@ -38,6 +38,14 @@ export type AuthScreenList = {
 	RegisterEmailVerification: undefined;
 	BiometricRegister: undefined;
 	BiometricLogin: undefined;
+
+	TransportationModelDetails: undefined;
+	Transportation: undefined;
+	Booking: undefined;
+	Destination: undefined;
+	Destinations: undefined;
+	Profile: undefined;
+	Home: undefined;
 };
 
 export type HomeScreenList = {
@@ -65,12 +73,16 @@ export default function App() {
 		return null;
 	}
 
+	/* I think this is not the right way to do it
+		But I'll do it like this for now,
+		experts please do it the right way if this is wrong :)
+	*/
 	return (
 		<SafeAreaProvider>
 			{/* <Header /> */}
 			{/* <TransportationModeDetails /> */}
 			{/* <Transportation /> */}
-			<Booking />
+			{/* <Booking /> */}
 			{/* <Destination /> */}
 			{/* <Destinations /> */}
 			{/* <Confirmation /> */}
@@ -90,9 +102,9 @@ export default function App() {
 			{/* <Profile /> */}
 			{/* <Home /> */}
 
-			{/* <NavigationContainer>
+			<NavigationContainer>
 				<Auth.Navigator
-					initialRouteName="BiometricLogin"
+					initialRouteName="Home"
 					screenOptions={{ headerTintColor: '#fff', header: Header, contentStyle: { backgroundColor: '#0F1423' } }}>
 					<Auth.Screen name="ManualLogin" component={ManualLogin} />
 					<Auth.Screen name="ManualRegister" component={ManualRegister} />
@@ -102,8 +114,32 @@ export default function App() {
 					<Auth.Screen name="RegisterEmailVerification" component={RegisterEmailVerification} />
 					<Auth.Screen name="BiometricRegister" component={BiometricRegister} />
 					<Auth.Screen name="BiometricLogin" component={BiometricLogin} />
+
+					<Auth.Screen name="TransportationModelDetails" component={TransportationModeDetails} />
+					<Auth.Screen name="Transportation" component={Transportation} />
+					<Auth.Screen name="Booking" component={Booking} />
+					<Auth.Screen name="Destination" component={Destination} />
+					<Auth.Screen name="Destinations" component={Destinations} />
+					<Auth.Screen name="Profile" component={Profile} />
+					<Auth.Screen name="Home" component={Home} />
+			{/* <Confirmation /> */}
+			{/* <Discover /> */}
+			{/* <BiometricPaymentConfirmation /> */}
+			{/* <ManualPaymentConfirmation /> */}
+			{/* <Invoice
+				cart={[
+					{ item: 'ER6-Transport', quantity: 2, unitPrice: 1200 },
+					{ item: 'Refreshing Drinks', quantity: 4, unitPrice: 50 },
+				]}
+				transactionId="FAJIO48YTF09XGAY7"
+				passengers={['Luke SkyWalker', 'Leila SkyWalker', 'Darth Wader', 'Master Yoda']}
+				image={require('./assets/curima.png')}
+			/> */}
+			{/* <UpcomingFlightInfo /> */}
+
+
 				</Auth.Navigator>
-			</NavigationContainer> */}
+			</NavigationContainer>
 		</SafeAreaProvider>
 	);
 }
