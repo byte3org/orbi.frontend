@@ -19,10 +19,11 @@ import SecondaryButton from '../components/SecondaryButton';
 import PrimaryText from '../components/PrimaryText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthScreenList } from '../../App';
+import SecondaryText from '../components/SecondaryText';
 
 type Props = NativeStackScreenProps<AuthScreenList, 'ManualLogin'>;
 
-export default function ManualLogin(props: Props) {
+export default function ManualPaymentConfirmation(props: Props) {
 	const { navigation } = props;
 
 	const passwordRef = React.useRef<TextInput>(null);
@@ -30,10 +31,10 @@ export default function ManualLogin(props: Props) {
 		<ImageBackground source={require('../../assets/get-started-background.png')} style={styles.parentView}>
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={styles.parentView}>
 				<View style={styles.secondaryView}>
-					{/* <Text style={styles.logo}>Orbi</Text> */}
+					<Text style={styles.logo}>Orbi</Text>
 
 					<ScrollView style={styles.mainView}>
-						<PrimaryText>Login</PrimaryText>
+						<SecondaryText style={styles.mainText}>Confirm Payment</SecondaryText>
 
 						<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
 							<TextBox
@@ -55,13 +56,7 @@ export default function ManualLogin(props: Props) {
 						<PrimaryButton
 							style={styles.primaryButton}
 							onPress={() => navigation.navigate('BiometricLogin')}
-							title="Login"
-						/>
-
-						<SecondaryButton
-							onPress={() => navigation.navigate('BiometricRegister')}
-							title="Register Instead"
-							style={styles.secondaryButton}
+							title="Pay"
 						/>
 					</ScrollView>
 				</View>
@@ -76,10 +71,8 @@ const styles = StyleSheet.create({
 
 	logo: { fontFamily: 'Poppins_600SemiBold', color: '#fff', fontSize: 36 },
 	mainView: { paddingTop: 250 },
-	loginText: {
-		fontFamily: 'Poppins_600SemiBold',
-		fontSize: 53,
-		color: '#fff',
+	mainText: {
+		marginBottom: 20,
 	},
 	primaryButton: {
 		marginTop: 26,

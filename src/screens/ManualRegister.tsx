@@ -17,9 +17,9 @@ import TextBox from '../components/TextBox';
 import PrimaryButton from '../components/PrimaryButton';
 import PrimaryText from '../components/PrimaryText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
+import { AuthScreenList } from '../../App';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ManualRegister'>;
+type Props = NativeStackScreenProps<AuthScreenList, 'ManualRegister'>;
 
 export default function ManualRegister(props: Props) {
 	const { navigation } = props;
@@ -36,9 +36,7 @@ export default function ManualRegister(props: Props) {
 			blurRadius={25}>
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={styles.parentView}>
 				<View style={styles.secondaryView}>
-					<SafeAreaView>
-						<Text style={styles.logo}>Orbi</Text>
-					</SafeAreaView>
+					<SafeAreaView>{/* <Text style={styles.logo}>Orbi</Text> */}</SafeAreaView>
 					<ScrollView style={styles.mainView}>
 						<PrimaryText>Register</PrimaryText>
 						<View style={{ marginTop: 20 }}>

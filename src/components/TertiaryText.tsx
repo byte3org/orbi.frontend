@@ -7,15 +7,15 @@ type Props = {
 	children: React.ReactNode;
 };
 
-function ParagraphText(props: Props) {
+function TertiaryText(props: Props) {
 	const { style: customTextStyles, children } = props;
 
 	const textStyle = StyleSheet.compose(
 		{
-			fontFamily: 'Poppins_400Regular',
-			fontSize: 18,
+			fontFamily: 'Poppins_500Medium',
+			fontSize: 24,
 			color: '#fff',
-			lineHeight: 27,
+			lineHeight: 26,
 		},
 		customTextStyles
 	);
@@ -23,4 +23,4 @@ function ParagraphText(props: Props) {
 	return <Text style={textStyle}>{children}</Text>;
 }
 
-export default ParagraphText;
+export default TertiaryText;

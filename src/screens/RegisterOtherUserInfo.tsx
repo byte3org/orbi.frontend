@@ -19,12 +19,11 @@ import PrimaryText from '../components/PrimaryText';
 import Dropdown, { DropdownOption } from '../components/Dropdown';
 
 const galaxies: DropdownOption<string>[] = [{ label: 'Andromeda', value: 'andromeda' }];
+const planets: DropdownOption<string>[] = [{ label: 'Mars', value: 'mars' }];
+const countries: DropdownOption<string>[] = [{ label: 'Mars', value: 'mars' }];
 
 export default function RegisterOtherUserInfo() {
-	const fullNameRef = React.useRef<TextInput>(null);
-	const emailRef = React.useRef<TextInput>(null);
-	const passwordRef = React.useRef<TextInput>(null);
-	const retypePasswordRef = React.useRef<TextInput>(null);
+	// const [geoPostalCode,setGeoPostalCode] = React.useState('')
 
 	return (
 		<ImageBackground
@@ -33,15 +32,17 @@ export default function RegisterOtherUserInfo() {
 			blurRadius={25}>
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={styles.parentView}>
 				<View style={styles.secondaryView}>
-					<SafeAreaView>
-						<Text style={styles.logo}>Orbi</Text>
-					</SafeAreaView>
+					<SafeAreaView>{/* <Text style={styles.logo}>Orbi</Text> */}</SafeAreaView>
 					<View style={styles.mainView}>
 						<PrimaryText>Register</PrimaryText>
 						<View style={{ marginTop: 20 }}>
 							<KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-								<Dropdown options={galaxies} value="andromeda" />
+								<Dropdown style={styles.dropdown} options={galaxies} value="andromeda" />
+								<Dropdown style={styles.dropdown} options={planets} value="mars" />
+								<Dropdown style={styles.dropdown} options={countries} value="mars" />
+								<TextBox placeholderText="Geo Code or Postal Code" />
 							</KeyboardAvoidingView>
+
 							<PrimaryButton style={styles.primaryButton} onPress={() => console.log('Register')} title="Register" />
 						</View>
 					</View>
@@ -61,6 +62,9 @@ const styles = StyleSheet.create({
 		fontFamily: 'Poppins_600SemiBold',
 		fontSize: 53,
 		color: '#fff',
+	},
+	dropdown: {
+		marginBottom: 20,
 	},
 	primaryButton: {
 		marginTop: 50,

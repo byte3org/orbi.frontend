@@ -19,10 +19,10 @@ import ParagraphText from '../components/ParagraphText';
 import PrimaryText from '../components/PrimaryText';
 import CharacterBox from '../components/CharacterBox';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
+import { AuthScreenList } from '../../App';
 import SecondaryText from '../components/SecondaryText';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'RegisterEmailVerification'>;
+type Props = NativeStackScreenProps<AuthScreenList, 'RegisterEmailVerification'>;
 
 export default function RegisterEmailVerification(props: Props) {
 	const { navigation } = props;
@@ -40,9 +40,7 @@ export default function RegisterEmailVerification(props: Props) {
 			blurRadius={25}>
 			<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={styles.parentView}>
 				<View style={styles.secondaryView}>
-					<SafeAreaView>
-						<Text style={styles.logo}>Orbi</Text>
-					</SafeAreaView>
+					<SafeAreaView>{/* <Text style={styles.logo}>Orbi</Text> */}</SafeAreaView>
 					<ScrollView style={styles.mainView}>
 						<PrimaryText>Register</PrimaryText>
 						<SecondaryText style={{ marginVertical: 20 }}>Verify Your Email</SecondaryText>
