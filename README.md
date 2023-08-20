@@ -48,7 +48,7 @@ This document outlines the workflow for the booking function in our application.
 #### Step 5: Select Transportation Mode
 
 - **Description:** Choose your preferred mode of transportation for the trip.
-- **Screenshot:** ![Step 5 Screenshot](assets/screenshots/5b.jpg)
+- **Screenshot:** ![Step 5 Screenshot](assets/screenshots/5b.JPG)
 
 #### Step 6: Check Transportation Mode Details
 
