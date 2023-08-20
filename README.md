@@ -13,6 +13,12 @@ Our mission is to make interplanetary travel accessible and enjoyable for everyo
 - Keep track of your trips
 - Secure payments
 
+## Backend services
+
+- [orbi.backend](https://github.com/byte3org/orbi.backend) - The backend
+- [galactic.wallet](https://github.com/byte3org/galactic.wallet) - Wallet service
+- [oidc-orbi](https://github.com/byte3org/oidc-orbi) - Openid server
+
 ## Current limitations
 
 - Currently we do not track weather so no weather forecasting
