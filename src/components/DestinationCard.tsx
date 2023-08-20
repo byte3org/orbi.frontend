@@ -1,4 +1,5 @@
 import { View, ImageBackground, StyleSheet, Platform, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import SmallText from './SmallText';
@@ -7,6 +8,7 @@ import Icon from './Icon';
 
 const DestinationsCard = (props: Destination) => {
 	const { destination, planet, isAFavorite, image } = props;
+	const navigator = useNavigation()
 
 	return (
 		<ImageBackground
@@ -30,7 +32,7 @@ const DestinationsCard = (props: Destination) => {
 				}),
 			}}
 			source={image}>
-			<TouchableOpacity onPress={() => console.log('Destination Card clicked.')} style={{ flex: 1 }}>
+			<TouchableOpacity onPress={() => navigator.navigate("Destination", { destination })} style={{ flex: 1 }}>
 				<LinearGradient
 					colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0.4)', 'transparent']}
 					start={{ x: 0, y: 0.5 }}

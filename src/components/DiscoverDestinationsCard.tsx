@@ -1,4 +1,5 @@
 import { View, ImageBackground, Pressable, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import SmallText from './SmallText';
@@ -7,9 +8,10 @@ import SecondaryText from './SecondaryText';
 type Props = {};
 
 const DiscoverDestinationsCard = (props: Props) => {
+	const navigator = useNavigation()
 	return (
 		<ImageBackground style={styles.imageBackground} source={require('../../assets/discover.png')} resizeMode="cover">
-			<Pressable onPress={() => console.log('Discover Destinations Card clicked.')} style={styles.flexed}>
+			<Pressable onPress={() => {navigator.navigate("Destinations")}} style={styles.flexed}>
 				<LinearGradient
 					colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0.4)', 'transparent']}
 					start={{ x: 0, y: 0.5 }}
