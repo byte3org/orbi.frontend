@@ -1,20 +1,10 @@
-import {
-	View,
-	Text,
-	ImageBackground,
-	StyleSheet,
-	Platform,
-	TouchableHighlight,
-	TouchableOpacity,
-	ImageSourcePropType,
-} from 'react-native';
+import { View, ImageBackground, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import SmallText from './SmallText';
 import SecondaryText from './SecondaryText';
 import TertiaryText from './TertiaryText';
 import Icon from './Icon';
-import { Destination } from './DestinationCard';
 
 const DestinationFullCard = (props: Destination) => {
 	const { destination, planet, isAFavorite, image } = props;

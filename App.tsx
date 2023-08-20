@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
@@ -70,7 +70,7 @@ export default function App() {
 			{/* <Header /> */}
 			{/* <TransportationModeDetails /> */}
 			{/* <Transportation /> */}
-			{/* <Booking /> */}
+			<Booking />
 			{/* <Destination /> */}
 			{/* <Destinations /> */}
 			{/* <Confirmation /> */}
@@ -90,7 +90,7 @@ export default function App() {
 			{/* <Profile /> */}
 			{/* <Home /> */}
 
-			<NavigationContainer>
+			{/* <NavigationContainer>
 				<Auth.Navigator
 					initialRouteName="BiometricLogin"
 					screenOptions={{ headerTintColor: '#fff', header: Header, contentStyle: { backgroundColor: '#0F1423' } }}>
@@ -103,7 +103,7 @@ export default function App() {
 					<Auth.Screen name="BiometricRegister" component={BiometricRegister} />
 					<Auth.Screen name="BiometricLogin" component={BiometricLogin} />
 				</Auth.Navigator>
-			</NavigationContainer>
+			</NavigationContainer> */}
 		</SafeAreaProvider>
 	);
 }

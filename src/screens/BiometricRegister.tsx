@@ -4,6 +4,8 @@ import SecondaryButton from '../components/SecondaryButton';
 import PrimaryText from '../components/PrimaryText';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthScreenList } from '../../App';
+import Icon from '../components/Icon';
+import SmallText from '../components/SmallText';
 
 type Props = NativeStackScreenProps<AuthScreenList, 'BiometricRegister'>;
 
@@ -18,14 +20,9 @@ export default function BiometricRegister(props: Props) {
 				<ScrollView style={styles.mainView}>
 					<PrimaryText>Register</PrimaryText>
 
-					<View style={{ alignItems: 'center', paddingVertical: 76, marginBottom: 32 }}>
-						<Image
-							style={{ opacity: 0.5, marginVertical: 30, transform: [{ scale: 1.5 }] }}
-							source={require('../../assets/fingerprint.png')}
-						/>
-						<Text style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Poppins_600SemiBold', fontSize: 18 }}>
-							Verify your biometrics
-						</Text>
+					<View style={styles.fingerprintIconContainer}>
+						<Icon name="fingerprint" style={styles.fingerprintIcon} />
+						<SmallText style={styles.verifyText}>Verify your biometrics</SmallText>
 					</View>
 
 					<View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
@@ -45,6 +42,9 @@ const styles = StyleSheet.create({
 
 	logo: { fontFamily: 'Poppins_600SemiBold', color: '#fff', fontSize: 36 },
 	mainView: { paddingTop: 250 },
+	fingerprintIconContainer: { alignItems: 'center', paddingVertical: 76, marginBottom: 32 },
+	fingerprintIcon: { fontSize: 62, color: 'rgba(255,255,255,0.5)', marginBottom: 20 },
+	verifyText: {},
 	primaryButton: {
 		marginTop: 26,
 	},
