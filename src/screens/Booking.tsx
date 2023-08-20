@@ -1,6 +1,7 @@
 import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import DatePicker from 'react-native-modern-datepicker';
+import Checkbox from 'expo-checkbox';
 
 import SearchBox from '../components/SearchBox';
 import SmallText from '../components/SmallText';
@@ -17,6 +18,8 @@ const Booking = (props: Props) => {
 	const [passengerGalacticIDs, setPassengerGalacticIDs] = React.useState(['Luke SkyWalker', 'Leila SkyWalker']);
 
 	const [departureDate, setDepartureDate] = React.useState<string | undefined>(undefined);
+
+	const [isScheduleFlexible, setIsScheduleFlexible] = React.useState(false);
 
 	const [pickupLocation, setPickupLocation] = React.useState('');
 
@@ -40,7 +43,6 @@ const Booking = (props: Props) => {
 					/>
 					<View style={styles.passengersContainer}>{passengers}</View>
 				</View>
-
 				<View style={styles.view}>
 					<SmallText style={styles.smallText}>DEPARTURE</SmallText>
 					<TertiaryText>{departureDate ? departureDate : 'No Departure Date Selected'}</TertiaryText>
@@ -60,6 +62,18 @@ const Booking = (props: Props) => {
 						minuteInterval={30}
 						style={{ borderRadius: 20, marginTop: 10 }}
 					/>
+				</View>
+
+				<View style={styles.checkboxContainer}>
+					<Checkbox
+						style={styles.checkbox}
+						value={isScheduleFlexible}
+						onValueChange={setIsScheduleFlexible}
+						color={isScheduleFlexible ? '#F4722B' : undefined}
+					/>
+					<Pressable onPress={() => setIsScheduleFlexible((prevState) => !prevState)}>
+						<SmallText>My schedule is flexible</SmallText>
+					</Pressable>
 				</View>
 
 				<View style={styles.view}>
@@ -85,6 +99,16 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	view: { marginTop: 20 },
+	checkboxContainer: {
+		marginTop: 20,
+		flexDirection: 'row',
+		alignItems: 'center',
+		marginBottom: 20,
+	},
+	checkbox: {
+		marginRight: 10,
+		color: '#0F1423',
+	},
 	passengersContainer: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
