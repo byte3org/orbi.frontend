@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, Alert, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
@@ -32,6 +32,13 @@ import Invoice from "./src/screens/Invoice";
 import Discover from "./src/screens/Discover";
 import BiometricPaymentConfirmation from "./src/screens/BiometricPaymentConfirmation";
 import ManualPaymentConfirmation from "./src/screens/ManualPaymentConfirmation";
+import { useCallback, useEffect, useState } from "react";
+import {
+  authorize,
+  refresh,
+  revoke,
+  prefetchConfiguration,
+} from "react-native-app-auth";
 
 export type AuthScreenList = {
   ManualLogin: undefined;
@@ -66,24 +73,47 @@ export type HomeScreenList = {
 const Auth = createNativeStackNavigator<AuthScreenList>();
 // const Home = createNativeStackNavigator<HomeScreenList>();
 
-// You must include a clientSecret
 const config = {
   issuer: "http://localhost:9998/",
   clientId: "web",
-  clientSecret: "your-client-secret",
+  clientSecret: "name",
   redirectUrl: "com.your.app.name:/oauthredirect",
   scopes: ["openid", "profile", "offline_access"],
 };
 
-// login
-// const authState = await authorize(config);
-
-// Refresh token
-//const refreshedState = await refresh(config, {
-//  refreshToken: authState.refreshToken,
-// });
+const defaultAuthState = {
+  hasLoggedInOnce: false,
+  accessToken: "",
+  accessTokenExpirationDate: "",
+  refreshToken: "",
+};
 
 export default function App() {
+  const [authState, setAuthState] = useState(defaultAuthState);
+  useEffect(() => {
+    prefetchConfiguration({
+      warmAndPrefetchChrome: true,
+      connectionTimeoutSeconds: 5,
+      ...config,
+    });
+  }, []);
+
+  const handleAuthorize = useCallback(async () => {
+    try {
+      const newAuthState = await authorize({
+        ...config,
+        connectionTimeoutSeconds: 5,
+      });
+
+      setAuthState({
+        hasLoggedInOnce: true,
+        ...newAuthState,
+      });
+    } catch (error) {
+      Alert.alert("Failed to log in");
+    }
+  }, [authState]);
+
   let [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -121,7 +151,14 @@ export default function App() {
 			/> */}
       {/* <UpcomingFlightInfo /> */}
       {/* <Profile /> */}
-      {/* <Home /> */}
+      {/* 
+      <Home />
+      <Button
+        onPress={() => handleAuthorize()}
+        color="#DA2536"
+        title="Authorize IdentityServer"
+      />
+      */}
 
       <NavigationContainer>
         <Auth.Navigator
