@@ -8,6 +8,16 @@ Our mission is to make interplanetary travel accessible and enjoyable for everyo
 
 ## Features
 
+- Discover places according to your preferences and get suggestions based on what you and others have travelled
+- Choose a transportation mode according to your budget and other preferences
+- Keep track of your trips
+- Secure payments
+
+## Current limitations
+
+- Currently we do not track weather so no weather forecasting
+- An endpoint for shuttle schedules is not available yet
+- Recommendations are not generated for the user that is the using the app currently
 
 ## Screenshots
 
@@ -104,6 +114,12 @@ Before you begin, ensure you have met the following requirements:
 3. Install project dependencies:
 
 ```npm install```
+
+4. If you are going to work with the backend, you will need to clone the following repo as well
+
+```git clone https://github.com/byte3org/orbi.backend```
+
+Check out the [backend](https://github.com/byte3org/orbi.backend) for more information about how to set up
 
 
 ## Running the App
