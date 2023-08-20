@@ -18,22 +18,22 @@ This document outlines the workflow for the booking function in our application.
 #### Step 1: Discover the Planet of Your Wish
 
 - **Description:** Begin your journey by discovering your dream interplanetary destination.
-- **Screenshot:** ![Step 1 Screenshot](assets/screenshots/1b.jpg)
+- **Screenshot:** ![Step 1 Screenshot](assets/screenshots/1b.JPG)
 
 #### Step 2: Destination Selection
 
 - **Description:** Choose your desired destination from a diverse range of options.
-- **Screenshot:** ![Step 2 Screenshot](assets/screenshots/2b.jpg)
+- **Screenshot:** ![Step 2 Screenshot](assets/screenshots/2b.JPG)
 
 #### Step 3: Explore Destination Details
 
 - **Description:** Dive into the details of your chosen destination, learning about its unique features and attractions.
-- **Screenshot:** ![Step 3 Screenshot](assets/screenshots/3b.jpg)
+- **Screenshot:** ![Step 3 Screenshot](assets/screenshots/3b.JPG)
 
 #### Step 4: Select Passengers, Departure Date, Pickup Location
 
 - **Description:** Customize your journey by specifying the number of passengers, departure date, and pickup location.
-- **Screenshot:** ![Step 4 Screenshot](assets/screenshots/4b.jpg)
+- **Screenshot:** ![Step 4 Screenshot](assets/screenshots/4b.JPG)
 
 #### Step 5: Select Transportation Mode
 
@@ -43,7 +43,7 @@ This document outlines the workflow for the booking function in our application.
 #### Step 6: Check Transportation Mode Details
 
 - **Description:** Review the details of your selected transportation mode, ensuring it aligns with your preferences.
-- **Screenshot:** ![Step 6 Screenshot](assets/screenshots/6b.jpg)
+- **Screenshot:** ![Step 6 Screenshot](assets/screenshots/6b.JPG)
 
 #### Step 7: Confirm Booking and Proceed to Payment
 
@@ -53,17 +53,17 @@ This document outlines the workflow for the booking function in our application.
 #### Step 8: Payment Confirmation with Biometrics
 
 - **Description:** Verify your payment using biometric authentication for enhanced security.
-- **Screenshot:** ![Step 8 Screenshot](assets/screenshots/8b.jpg)
+- **Screenshot:** ![Step 8 Screenshot](assets/screenshots/8b.JPG)
 
 #### Step 9: Payment Confirmation with Galactic ID and Password
 
 - **Description:** Alternatively, confirm your payment by entering your Galactic ID and secure password.
-- **Screenshot:** ![Step 9 Screenshot](assets/screenshots/9b.jpg)
+- **Screenshot:** ![Step 9 Screenshot](assets/screenshots/9b.JPG)
 
 #### Step 10: Get Payment Invoice
 
 - **Description:** Receive a detailed payment invoice with all the booking and payment transaction information.
-- **Screenshot:** ![Step 10 Screenshot](assets/screenshots/10b.jpg)
+- **Screenshot:** ![Step 10 Screenshot](assets/screenshots/10b.JPG)
 
 #### Troubleshooting
 
