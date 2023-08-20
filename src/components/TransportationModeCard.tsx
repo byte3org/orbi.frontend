@@ -6,8 +6,10 @@ import SmallText from './SmallText';
 import SecondaryText from './SecondaryText';
 import TertiaryText from './TertiaryText';
 
-const TransportationModeCard = (props: TransportationMode) => {
-	const { cost, image, name } = props;
+type Props = TransportationMode & { onPress: () => void };
+
+const TransportationModeCard = (props: Props) => {
+	const { cost, image, name, onPress } = props;
 	return (
 		<ImageBackground
 			style={{
@@ -31,7 +33,7 @@ const TransportationModeCard = (props: TransportationMode) => {
 				}),
 			}}
 			source={image}>
-			<TouchableOpacity onPress={() => console.log('Destination Card clicked.')} style={{ flex: 1 }}>
+			<TouchableOpacity onPress={onPress} style={{ flex: 1 }}>
 				<LinearGradient
 					colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0.4)', 'transparent']}
 					start={{ x: 0, y: 0.5 }}

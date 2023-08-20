@@ -6,42 +6,37 @@ import SecondaryButton from '../components/SecondaryButton';
 import DestinationsCard from '../components/DestinationCard';
 import { data, user } from './Home';
 
-import { REACT_NATIVE_APP_API_URL } from "@env"
+import { REACT_NATIVE_APP_API_URL } from '@env';
 
 type Props = {};
-
 
 const Profile = (props: Props) => {
 	const [profileData, setProfileData] = React.useState<ProfileData>();
 
 	React.useEffect(() => {
 		fetch(`${REACT_NATIVE_APP_API_URL}/user/${user}`)
-			.then(res => res.json())
-			.then(async res => {
-				let trending = await (await fetch(`${REACT_NATIVE_APP_API_URL}/destinations/trending`)).json()
-				trending = trending.map(dest => {
-					let image;
-					try {
-					  image = require(`../../assets/${dest.id}.png`);
-					} catch (error) {
-					  image = require('../../assets/discover.png');
-					}
+			.then((res) => res.json())
+			.then(async (res) => {
+				let trending = await (await fetch(`${REACT_NATIVE_APP_API_URL}/destinations/trending`)).json();
+				trending = trending.map((dest) => {
+					let image = require('../../assets/avatar.png');
+
 					return {
 						destination: dest.name,
 						planet: dest.planet.name,
 						image,
-						isAFavourite: false
-					}
-				})
+						isAFavourite: false,
+					};
+				});
 				setProfileData({
 					name: res.name,
 					image: require('../../assets/avatar.jpg'),
 					galacticId: res.galacticId,
 					planet: res.planet.name,
 					recommendedDestinations: data,
-					trendingDestinations: trending
+					trendingDestinations: trending,
 				});
-			})
+			});
 	}, []);
 
 	return (

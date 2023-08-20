@@ -7,36 +7,19 @@ import { data } from './Home';
 import SearchBox from '../components/SearchBox';
 import DestinationFullCard from '../components/DestinationFullCard';
 
-import { REACT_NATIVE_APP_API_URL } from "@env"
+import { REACT_NATIVE_APP_API_URL } from '@env';
+import { BookingScreenList } from '../../App';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'Destinations'>;
 
 const Destinations = (props: Props) => {
-	
 	const [destinations, setDestinations] = React.useState<Destination[]>([]);
 	const [filterDestinationName, setFilterDestinationName] = React.useState('');
 	const safeAreaInsets = useSafeAreaInsets();
 
 	React.useEffect(() => {
-		fetch(`${REACT_NATIVE_APP_API_URL}/destinations/`)
-			.then(res => res.json())
-			.then(res => {
-				res = res.map(dest => {
-					let image;
-					try {
-					  image = require(`../../assets/${dest.id}.png`);
-					} catch (error) {
-					  image = require('../../assets/discover.png');
-					}
-					return {
-						destination: dest.name,
-						planet: dest.planet.name,
-						image,
-						isAFavourite: false
-					}
-				})
-				setDestinations(res);
-			})
+		setDestinations(data);
 	}, []);
 
 	return (
@@ -63,6 +46,7 @@ const Destinations = (props: Props) => {
 								destination={item.item.destination}
 								isAFavorite={item.item.isAFavorite}
 								image={item.item.image}
+								onPress={() => props.navigation.navigate('Destination')}
 							/>
 						)}
 						keyExtractor={(item) => item.planet}

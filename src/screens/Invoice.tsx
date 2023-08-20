@@ -9,30 +9,24 @@ import Passenger from '../components/Passenger';
 import TertiaryText from '../components/TertiaryText';
 import PrimaryText from '../components/PrimaryText';
 import SecondaryButton from '../components/SecondaryButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-type Props = {
-	transactionId: string;
-	passengers: string[];
-	image: ImageSourcePropType;
-	cart: {
-		item: string;
-		quantity: number;
-		unitPrice: number;
-	}[];
+type Props = NativeStackScreenProps<BookingScreenList, 'Invoice'>;
+
+const invoiceData = {
+	cart: [
+		{ item: 'ER6-Transport', quantity: 2, unitPrice: 1200 },
+		{ item: 'Refreshing Drinks', quantity: 4, unitPrice: 50 },
+	],
+	transactionId: 'FAJIO48YTF09XGAY7',
+	passengers: ['Luke SkyWalker', 'Leila SkyWalker', 'Darth Wader', 'Master Yoda'],
+	image: require('../../assets/curima.png'),
 };
 
-// const invoiceData = {
-// 	cart: [
-// 		{ item: 'ER6-Transport', quantity: 2, unitPrice: 1200 },
-// 		{ item: 'Refreshing Drinks', quantity: 4, unitPrice: 50 },
-// 	],
-// 	transactionId: 'FAJIO48YTF09XGAY7',
-// 	passengers: ['Luke SkyWalker', 'Leila SkyWalker', 'Darth Wader', 'Master Yoda'],
-// 	image: require('./assets/curima.png'),
-// };
-
 const Invoice = (props: Props) => {
-	const { passengers, transactionId, cart = [] } = props;
+	const [data, setData] = React.useState(invoiceData);
+	const { passengers, transactionId, cart = [] } = data;
 
 	const passengerComponents = React.useMemo(() => passengers.map((name) => <Passenger name={name} key={name} />), []);
 
@@ -116,10 +110,7 @@ const Invoice = (props: Props) => {
 				/>
 
 				<View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
-					<SecondaryButton
-						onPress={() => navigation.navigate('ResetPasswordEmailVerification')}
-						title="Contact Support"
-					/>
+					<SecondaryButton onPress={() => props.navigation.navigate('Home')} title="Contact Support" />
 				</View>
 			</ScrollView>
 		</View>

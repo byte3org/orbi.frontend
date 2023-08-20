@@ -5,12 +5,12 @@ import DiscoverDestinationsCard from '../components/DiscoverDestinationsCard';
 import DestinationsCard from '../components/DestinationCard';
 import SecondaryText from '../components/SecondaryText';
 import SmallText from '../components/SmallText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-import { REACT_NATIVE_APP_API_URL } from "@env"
+type Props = NativeStackScreenProps<BookingScreenList, 'Home'>;
 
-type Props = {};
-
-export const user = "Seniru"
+export const user = 'Seniru';
 
 export const data: Destination[] = [
 	{
@@ -96,7 +96,7 @@ const flightData: UpcomingFlightData = {
 	image: require('../../assets/curima.png'),
 };
 
-function Home({}: Props) {
+function Home({ navigation }: Props) {
 	const [userData, setUserData] = React.useState<UserData>();
 	const [upcomingFlightData, setUpcomingFlightData] = React.useState<UpcomingFlightData>();
 	const [trendingDestinations, setTrendingDestinations] = React.useState<Destination[]>([]);
@@ -106,25 +106,6 @@ function Home({}: Props) {
 		setUserData({ name: 'Leila SkyWalker' });
 		setUpcomingFlightData(flightData);
 		setRecommendedDestinations(data);
-		(async () => {
-			let trending = await (await fetch(`${REACT_NATIVE_APP_API_URL}/destinations/trending`)).json()
-			trending = trending.map(dest => {
-				let image;
-				try {
-				  image = require(`../../assets/${dest.id}.png`);
-				} catch (error) {
-				  image = require('../../assets/discover.png');
-				}
-				return {
-					destination: dest.name,
-					planet: dest.planet.name,
-					image,
-					isAFavourite: false
-				}
-			})
-			console.log(trending)
-			setTrendingDestinations(trending);
-		})()
 	}, []);
 
 	return (
@@ -138,8 +119,10 @@ function Home({}: Props) {
 				)}
 
 				<View>
-					{upcomingFlightData && <UpcomingFlightCard {...upcomingFlightData} />}
-					<DiscoverDestinationsCard />
+					{upcomingFlightData && (
+						<UpcomingFlightCard {...upcomingFlightData} onPress={() => navigation.navigate('UpcomingFlightInfo')} />
+					)}
+					<DiscoverDestinationsCard onPress={() => navigation.navigate('Discover')} />
 				</View>
 
 				{trendingDestinations.length > 0 && (
@@ -153,6 +136,7 @@ function Home({}: Props) {
 									destination={item.item.destination}
 									isAFavorite={item.item.isAFavorite}
 									image={item.item.image}
+									onPress={() => navigation.navigate('Destination')}
 								/>
 							)}
 							keyExtractor={(item) => item.destination}
@@ -174,6 +158,7 @@ function Home({}: Props) {
 									destination={item.item.destination}
 									isAFavorite={item.item.isAFavorite}
 									image={item.item.image}
+									onPress={() => navigation.navigate('Destination')}
 								/>
 							)}
 							keyExtractor={(item) => item.destination}

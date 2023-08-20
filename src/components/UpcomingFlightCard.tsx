@@ -6,12 +6,14 @@ import SecondaryText from './SecondaryText';
 import TertiaryText from './TertiaryText';
 import { Pressable } from 'react-native';
 
-const UpcomingFlightCard = (props: UpcomingFlightData) => {
-	const { destination, planet, timeRemaining, image } = props;
+type Props = UpcomingFlightData & { onPress: () => void };
+
+const UpcomingFlightCard = (props: Props) => {
+	const { destination, planet, timeRemaining, image, onPress } = props;
 
 	return (
 		<ImageBackground style={styles.backgroundImageContainer} source={image} resizeMode="cover">
-			<Pressable onPress={() => console.log('Upcoming Flight Card clicked.')} style={styles.flexed}>
+			<Pressable onPress={onPress} style={styles.flexed}>
 				<LinearGradient
 					colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0.4)', 'transparent']}
 					start={{ x: 0, y: 0.5 }}

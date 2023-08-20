@@ -7,8 +7,10 @@ import ParagraphText from '../components/ParagraphText';
 import SecondaryText from '../components/SecondaryText';
 import { LinearGradient } from 'expo-linear-gradient';
 import InfoCard from '../components/InfoCard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'TransportationModeDetails'>;
 
 const data = {
 	name: 'ER6-Teleport',
@@ -52,7 +54,7 @@ const TransportationModeDetails = (props: Props) => {
 						<InfoCard style={styles.infoCard} title="Arrival" value={details.arrival} />
 					</View>
 
-					<PrimaryButton title="Continue" onPress={() => console.log(`book ${name}`)} />
+					<PrimaryButton title="Continue" onPress={() => props.navigation.navigate('Confirmation')} />
 				</ScrollView>
 			)}
 		</View>

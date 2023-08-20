@@ -9,10 +9,10 @@ import PrimaryButton from '../components/PrimaryButton';
 import UserReview from '../components/UserReview';
 import TertiaryText from '../components/TertiaryText';
 import InfoCard from '../components/InfoCard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-import { REACT_NATIVE_APP_API_URL } from "@env"
-
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'Destination'>;
 
 const reviews: Review[] = [
 	{
@@ -64,35 +64,29 @@ const reviews: Review[] = [
 const Destination = (props: Props) => {
 	const [destinationData, setDestinationData] = React.useState<DestinationData>();
 	const route = useRoute();
-	const navigator = useNavigation()
+	const navigator = useNavigation();
 	const data = route.params;
-	let dest = data.destination.toLowerCase().replace(/\s+/g, "_")
 
 	React.useEffect(() => {
-		fetch(`${REACT_NATIVE_APP_API_URL}/destinations/${dest}`)
-			.then(res => res.json())
-			.then(res => {
-				let image;
-				try {
-				  image = require(`../../assets/${res.id}.png`);
-				} catch (error) {
-				  image = require('../../assets/discover.png');
-				}
-				console.log(image)
-				setDestinationData({
-					name: res.name,
-					positiveRating: 98,
-					destinationDescription: res.description,
-					reviews, // TODO: call the endpoint to get the reviews
-					otherDestinationInfo: {
-						oxygenLevel: res.oxygenLevel,
-						population: res.population,
-						temperature: res.temperature,
-					},
-					image
-				})
-			})
-		/*setDestinationData({
+		// fetch(`${REACT_NATIVE_APP_API_URL}/destinations/${dest}`)
+		// 	.then((res) => res.json())
+		// 	.then((res) => {
+		// 		let image = require('../../assets/discover.png');
+		// 		console.log(image);
+		// 		setDestinationData({
+		// 			name: res.name,
+		// 			positiveRating: 98,
+		// 			destinationDescription: res.description,
+		// 			reviews, // TODO: call the endpoint to get the reviews
+		// 			otherDestinationInfo: {
+		// 				oxygenLevel: res.oxygenLevel,
+		// 				population: res.population,
+		// 				temperature: res.temperature,
+		// 			},
+		// 			image,
+		// 		});
+		// 	});
+		setDestinationData({
 			name: 'Grime Forest',
 			positiveRating: 98,
 			destinationDescription:
@@ -100,7 +94,7 @@ const Destination = (props: Props) => {
 			otherDestinationInfo: { oxygenLevel: 2, population: 505909, temperature: 5 },
 			reviews,
 			image: require('../../assets/grime_forest.png'),
-		});*/
+		});
 	}, []);
 
 	const userReviews = React.useMemo(() => {
@@ -147,7 +141,7 @@ const Destination = (props: Props) => {
 						/>
 					</View>
 
-					<PrimaryButton title="Book Now" onPress={() => navigator.navigate("Booking", { destination: dest })} />
+					<PrimaryButton title="Book Now" onPress={() => props.navigation.navigate('Booking')} />
 					<SmallText style={styles.userReview}>Scroll to view user reviews</SmallText>
 
 					<View style={styles.reviewsContainer}>{userReviews}</View>

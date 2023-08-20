@@ -11,14 +11,12 @@ import Icon from '../components/Icon';
 import Passenger from '../components/Passenger';
 import TertiaryText from '../components/TertiaryText';
 import PrimaryButton from '../components/PrimaryButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'Booking'>;
 
 const Booking = (props: Props) => {
-	const navigator = useNavigation()
-	const route = useRoute();
-	let dest = route.params.destination
-
 	const [searchingGalacticID, setSearchingGalacticID] = React.useState('');
 	const [passengerGalacticIDs, setPassengerGalacticIDs] = React.useState(['Luke SkyWalker', 'Leila SkyWalker']);
 
@@ -88,7 +86,7 @@ const Booking = (props: Props) => {
 
 				<PrimaryButton
 					style={styles.primaryButton}
-					onPress={() => navigator.navigate('Transportation', { destination: dest })}
+					onPress={() => props.navigation.navigate('Transportation')}
 					title="Next"
 				/>
 			</ScrollView>

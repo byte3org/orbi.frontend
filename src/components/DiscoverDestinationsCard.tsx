@@ -5,13 +5,13 @@ import React from 'react';
 import SmallText from './SmallText';
 import SecondaryText from './SecondaryText';
 
-type Props = {};
+type Props = { onPress: () => void };
 
 const DiscoverDestinationsCard = (props: Props) => {
-	const navigator = useNavigation()
+	const { onPress } = props;
 	return (
 		<ImageBackground style={styles.imageBackground} source={require('../../assets/discover.png')} resizeMode="cover">
-			<Pressable onPress={() => {navigator.navigate("Destinations")}} style={styles.flexed}>
+			<Pressable onPress={onPress} style={styles.flexed}>
 				<LinearGradient
 					colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0.4)', 'transparent']}
 					start={{ x: 0, y: 0.5 }}

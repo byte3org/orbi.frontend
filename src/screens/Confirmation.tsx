@@ -7,8 +7,10 @@ import PrimaryButton from '../components/PrimaryButton';
 import SmallText from '../components/SmallText';
 import Passenger from '../components/Passenger';
 import TertiaryText from '../components/TertiaryText';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'Confirmation'>;
 
 const confirmationInfo = {
 	destination: 'Grime Forest - Mars',
@@ -117,7 +119,10 @@ const Confirmation = (props: Props) => {
 						onPress={(setIsPending) => {
 							console.log(`Proceed to payment`);
 							setIsPending(true);
-							setTimeout(() => setIsPending(false), 2500);
+							setTimeout(() => {
+								setIsPending(false);
+								props.navigation.navigate('Invoice');
+							}, 2500);
 						}}
 					/>
 				</ScrollView>

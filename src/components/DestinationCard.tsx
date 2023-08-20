@@ -6,9 +6,10 @@ import SmallText from './SmallText';
 import TertiaryText from './TertiaryText';
 import Icon from './Icon';
 
-const DestinationsCard = (props: Destination) => {
-	const { destination, planet, isAFavorite, image } = props;
-	const navigator = useNavigation()
+type Props = Destination & { onPress: () => void };
+
+const DestinationsCard = (props: Props) => {
+	const { destination, planet, isAFavorite, image, onPress } = props;
 
 	return (
 		<ImageBackground
@@ -32,7 +33,7 @@ const DestinationsCard = (props: Destination) => {
 				}),
 			}}
 			source={image}>
-			<TouchableOpacity onPress={() => navigator.navigate("Destination", { destination })} style={{ flex: 1 }}>
+			<TouchableOpacity onPress={onPress} style={{ flex: 1 }}>
 				<LinearGradient
 					colors={['rgba(0,0,0,0.75)', 'rgba(0,0,0,0.4)', 'transparent']}
 					start={{ x: 0, y: 0.5 }}

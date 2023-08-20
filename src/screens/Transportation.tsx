@@ -2,8 +2,10 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import SmallText from '../components/SmallText';
 import TransportationModeCard from '../components/TransportationModeCard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'Transportation'>;
 
 const modes: TransportationMode[] = [
 	{
@@ -52,7 +54,12 @@ const Transportation = (props: Props) => {
 
 				<FlatList
 					data={transportationModes}
-					renderItem={(item) => <TransportationModeCard {...item.item} />}
+					renderItem={(item) => (
+						<TransportationModeCard
+							{...item.item}
+							onPress={() => props.navigation.navigate('TransportationModeDetails')}
+						/>
+					)}
 					contentContainerStyle={{ paddingVertical: 20 }}
 				/>
 			</SafeAreaView>

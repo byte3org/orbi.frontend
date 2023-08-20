@@ -19,8 +19,11 @@ import SmallText from '../components/SmallText';
 import DestinationsCard from '../components/DestinationCard';
 import TertiaryText from '../components/TertiaryText';
 import { data } from './Home';
+import PrimaryButton from '../components/PrimaryButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookingScreenList } from '../../App';
 
-type Props = {};
+type Props = NativeStackScreenProps<BookingScreenList, 'Discover'>;
 
 type DiscoverData = {
 	planet: {
@@ -80,59 +83,63 @@ const Discover = (props: Props) => {
 	return (
 		<View style={styles.parent}>
 			{/* <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> */}
-			<SafeAreaView>
-				<SearchBox value={search} onTextChange={setSearch} placeholder="Search Here" />
+			<SearchBox value={search} onTextChange={setSearch} placeholder="Search Here" />
 
-				{discoverData && (
-					<ScrollView>
-						<View style={styles.planetsContainer}>
-							<Image source={discoverData.planet.image} style={styles.image} />
-							<Pressable
-								style={styles.planetAlt}
-								onPress={() => {
-									console.log(`Go to ${discoverData.altPlanet.name}`);
-									// setDiscoverData((prevData) => (prevData.planet.name === 'Mars' ? saturn : mars));
-								}}>
-								<Image source={discoverData.altPlanet.image} style={styles.planetAltImage} />
-								<SmallText>{discoverData.altPlanet.name}</SmallText>
-							</Pressable>
-						</View>
+			{discoverData && (
+				<ScrollView>
+					<View style={styles.planetsContainer}>
+						<Image source={discoverData.planet.image} style={styles.image} />
+						<Pressable
+							style={styles.planetAlt}
+							onPress={() => {
+								console.log(`Go to ${discoverData.altPlanet.name}`);
+								// setDiscoverData((prevData) => (prevData.planet.name === 'Mars' ? saturn : mars));
+							}}>
+							<Image source={discoverData.altPlanet.image} style={styles.planetAltImage} />
+							<SmallText>{discoverData.altPlanet.name}</SmallText>
+						</Pressable>
+					</View>
 
-						<SecondaryText style={styles.planetName}>{discoverData.planet.name}</SecondaryText>
-						<ParagraphText style={styles.planetDescription}>{discoverData.planet.description}</ParagraphText>
+					<SecondaryText style={styles.planetName}>{discoverData.planet.name}</SecondaryText>
+					<ParagraphText style={styles.planetDescription}>{discoverData.planet.description}</ParagraphText>
+					<View>
+						<SmallText>
+							<SmallText style={styles.highlightedSmallText}>{discoverData.planet.noOfDestinations}</SmallText>{' '}
+							Destinations
+						</SmallText>
+						<SmallText>
+							<SmallText style={styles.highlightedSmallText}>{discoverData.planet.positiveRating}%</SmallText> Positive
+							Rating
+						</SmallText>
+
+						<PrimaryButton
+							title="Check Destinations"
+							style={{ marginTop: 40 }}
+							onPress={() => props.navigation.navigate('Destinations')}
+						/>
+					</View>
+					{discoverData.planet.trendingDestinations && (
 						<View>
-							<SmallText>
-								<SmallText style={styles.highlightedSmallText}>{discoverData.planet.noOfDestinations}</SmallText>{' '}
-								Destinations
-							</SmallText>
-							<SmallText>
-								<SmallText style={styles.highlightedSmallText}>{discoverData.planet.positiveRating}%</SmallText>{' '}
-								Positive Rating
-							</SmallText>
+							<TertiaryText style={styles.trendingText}>Trending</TertiaryText>
+							<FlatList
+								data={discoverData.planet.trendingDestinations}
+								renderItem={(item) => (
+									<DestinationsCard
+										planet={item.item.planet}
+										destination={item.item.destination}
+										isAFavorite={item.item.isAFavorite}
+										image={item.item.image}
+									/>
+								)}
+								keyExtractor={(item) => item.planet}
+								style={{ marginTop: 10 }}
+								contentContainerStyle={{ paddingHorizontal: 10 }}
+								horizontal
+							/>
 						</View>
-						{discoverData.planet.trendingDestinations && (
-							<View>
-								<TertiaryText style={styles.trendingText}>Trending</TertiaryText>
-								<FlatList
-									data={discoverData.planet.trendingDestinations}
-									renderItem={(item) => (
-										<DestinationsCard
-											planet={item.item.planet}
-											destination={item.item.destination}
-											isAFavorite={item.item.isAFavorite}
-											image={item.item.image}
-										/>
-									)}
-									keyExtractor={(item) => item.planet}
-									style={{ marginTop: 10 }}
-									contentContainerStyle={{ paddingHorizontal: 10 }}
-									horizontal
-								/>
-							</View>
-						)}
-					</ScrollView>
-				)}
-			</SafeAreaView>
+					)}
+				</ScrollView>
+			)}
 			{/* </TouchableWithoutFeedback> */}
 		</View>
 	);

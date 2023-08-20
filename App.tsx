@@ -28,6 +28,7 @@ import Invoice from './src/screens/Invoice';
 import Discover from './src/screens/Discover';
 import BiometricPaymentConfirmation from './src/screens/BiometricPaymentConfirmation';
 import ManualPaymentConfirmation from './src/screens/ManualPaymentConfirmation';
+import GetStarted from './src/screens/GetStarted';
 
 export type AuthScreenList = {
 	ManualLogin: undefined;
@@ -59,8 +60,26 @@ export type HomeScreenList = {
 	BiometricLogin: undefined;
 };
 
+export type BookingScreenList = {
+	Header: undefined;
+	TransportationModeDetails: undefined;
+	Transportation: undefined;
+	Booking: undefined;
+	Destination: undefined;
+	Destinations: undefined;
+	Confirmation: undefined;
+	Discover: undefined;
+	BiometricPaymentConfirmation: undefined;
+	ManualPaymentConfirmation: undefined;
+	Invoice: undefined;
+	UpcomingFlightInfo: undefined;
+	Profile: undefined;
+	Home: undefined;
+};
+
 const Auth = createNativeStackNavigator<AuthScreenList>();
-// const Home = createNativeStackNavigator<HomeScreenList>();
+
+const Book = createNativeStackNavigator<BookingScreenList>();
 
 export default function App() {
 	let [fontsLoaded] = useFonts({
@@ -103,42 +122,27 @@ export default function App() {
 			{/* <Home /> */}
 
 			<NavigationContainer>
-				<Auth.Navigator
+				<Book.Navigator
 					initialRouteName="Home"
-					screenOptions={{ headerTintColor: '#fff', header: Header, contentStyle: { backgroundColor: '#0F1423' } }}>
-					<Auth.Screen name="ManualLogin" component={ManualLogin} />
-					<Auth.Screen name="ManualRegister" component={ManualRegister} />
-					<Auth.Screen name="ResetPassword" component={ResetPassword} />
-					<Auth.Screen name="ResetPasswordEmailVerification" component={ResetPasswordEmailVerification} />
-					<Auth.Screen name="RegisterOtherUserInfo" component={RegisterOtherUserInfo} />
-					<Auth.Screen name="RegisterEmailVerification" component={RegisterEmailVerification} />
-					<Auth.Screen name="BiometricRegister" component={BiometricRegister} />
-					<Auth.Screen name="BiometricLogin" component={BiometricLogin} />
-
-					<Auth.Screen name="TransportationModelDetails" component={TransportationModeDetails} />
-					<Auth.Screen name="Transportation" component={Transportation} />
-					<Auth.Screen name="Booking" component={Booking} />
-					<Auth.Screen name="Destination" component={Destination} />
-					<Auth.Screen name="Destinations" component={Destinations} />
-					<Auth.Screen name="Profile" component={Profile} />
-					<Auth.Screen name="Home" component={Home} />
-			{/* <Confirmation /> */}
-			{/* <Discover /> */}
-			{/* <BiometricPaymentConfirmation /> */}
-			{/* <ManualPaymentConfirmation /> */}
-			{/* <Invoice
-				cart={[
-					{ item: 'ER6-Transport', quantity: 2, unitPrice: 1200 },
-					{ item: 'Refreshing Drinks', quantity: 4, unitPrice: 50 },
-				]}
-				transactionId="FAJIO48YTF09XGAY7"
-				passengers={['Luke SkyWalker', 'Leila SkyWalker', 'Darth Wader', 'Master Yoda']}
-				image={require('./assets/curima.png')}
-			/> */}
-			{/* <UpcomingFlightInfo /> */}
-
-
-				</Auth.Navigator>
+					screenOptions={{
+						headerTintColor: '#fff',
+						header: Header,
+						contentStyle: { backgroundColor: '#0F1423', paddingHorizontal: 10 },
+					}}>
+					<Book.Screen name="TransportationModeDetails" component={TransportationModeDetails} />
+					<Book.Screen name="Transportation" component={Transportation} />
+					<Book.Screen name="Booking" component={Booking} />
+					<Book.Screen name="Destination" component={Destination} />
+					<Book.Screen name="Destinations" component={Destinations} />
+					<Book.Screen name="Confirmation" component={Confirmation} />
+					<Book.Screen name="Discover" component={Discover} />
+					{/* <Book.Screen name="BiometricPaymentConfirmation" component={BiometricPaymentConfirmation} />
+					<Book.Screen name="ManualPaymentConfirmation" component={ManualPaymentConfirmation} /> */}
+					<Book.Screen name="Invoice" component={Invoice} />
+					<Book.Screen name="UpcomingFlightInfo" component={UpcomingFlightInfo} />
+					{/* <Book.Screen name="Profile" component={Profile} /> */}
+					<Book.Screen name="Home" component={Home} />
+				</Book.Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>
 	);
