@@ -8,6 +8,8 @@ import SmallText from '../components/SmallText';
 
 type Props = {};
 
+export const user = "Seniru"
+
 export const data: Destination[] = [
 	{
 		planet: 'Mars',

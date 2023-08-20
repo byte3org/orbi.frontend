@@ -7,15 +7,36 @@ import { data } from './Home';
 import SearchBox from '../components/SearchBox';
 import DestinationFullCard from '../components/DestinationFullCard';
 
+import { REACT_NATIVE_APP_API_URL } from "@env"
+
 type Props = {};
 
 const Destinations = (props: Props) => {
+	
 	const [destinations, setDestinations] = React.useState<Destination[]>([]);
 	const [filterDestinationName, setFilterDestinationName] = React.useState('');
 	const safeAreaInsets = useSafeAreaInsets();
 
 	React.useEffect(() => {
-		setDestinations(data);
+		fetch(`${REACT_NATIVE_APP_API_URL}/destinations/`)
+			.then(res => res.json())
+			.then(res => {
+				res = res.map(dest => {
+					let image;
+					try {
+					  image = require(`../../assets/${dest.id}.png`);
+					} catch (error) {
+					  image = require('../../assets/discover.png');
+					}
+					return {
+						destination: dest.name,
+						planet: dest.planet.name,
+						image,
+						isAFavourite: false
+					}
+				})
+				setDestinations(res);
+			})
 	}, []);
 
 	return (
