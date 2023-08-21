@@ -15,9 +15,10 @@ Our mission is to make interplanetary travel accessible and enjoyable for everyo
 
 ## Backend services
 
-- [orbi.backend](https://github.com/byte3org/orbi.backend) - The backend
-- [galactic.wallet](https://github.com/byte3org/galactic.wallet) - Wallet service
-- [oidc-orbi](https://github.com/byte3org/oidc-orbi) - Openid server
+- [orbi.backend](https://github.com/byte3org/orbi.backend) - A monolithic backend for Orbi Application
+- [oidc-orbi](https://github.com/byte3org/oidc-orbi) - Openid Server (user authentication with biometrics and Galactic ID. Every citizen of the known universe is assigned with a Galactic ID at their birth and stored in a centralized database. Every application authenticates its users through this server, including Orbi).
+- [galactic.wallet](https://github.com/byte3org/galactic.wallet) - Wallet Service ( Each citizen of the known universe has a wallet associated with their Galactic ID, this wallet is managed by galatic.wallet service)
+
 
 ## Current limitations
 
